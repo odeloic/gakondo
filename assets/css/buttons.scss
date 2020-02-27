@@ -1,0 +1,31 @@
+button,
+.btn,
+a {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:focus,
+  &:active {
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.btn {
+  padding: 1rem 1.2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  &--outline {
+    border: 2px solid $color-primary;
+  }
+
+  &--red {
+    background-color: $color-secondary;
+    color: $color-primary--lightest;
+  }
+}
