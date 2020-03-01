@@ -82,12 +82,23 @@
 import Hero from '@/components/containers/Hero'
 import ProductsList from '@/components/containers/ProductsList'
 import Shields from '@/components/ui/Shields'
+// import config from '@/assets/config'
+import clientApi from '@/helpers/clientApi'
 
 export default {
   components: {
     Hero,
     ProductsList,
     Shields
+  },
+
+  mounted() {
+    // const myProducts = await this.$axios.get(
+    //   config.api.baseURL + config.api.routes.products
+    // )
+    // console.log(myProducts)
+    const api = clientApi(this.$axios);
+    console.log(api)
   }
 }
 </script>
