@@ -8,7 +8,7 @@
         </div>
         <!-- logo -->
         <nav class="navigation">
-          <a class="navigation__link" href="#">Shop</a>
+          <a class="navigation__link" href="#" @click="toggleCart()">Shop</a>
         </nav>
         <!-- navigation -->
       </header>
@@ -48,6 +48,13 @@ export default {
   name: 'Hero',
   components: {
     Shields
+  },
+  methods: {
+    toggleCart() {
+      this.$store.state.cartUIStatus === 'idle'
+        ? this.$store.commit('updateCartUIStatus', 'visible')
+        : this.$store.commit('updateCartUIStatus', 'idle')
+    }
   }
 }
 </script>

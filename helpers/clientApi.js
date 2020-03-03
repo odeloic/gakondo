@@ -1,14 +1,18 @@
-// import axios from '@nuxtjs/axios'
-// import config from '@/assets/config'
-// import axios from 'axios'
+// import $axios from '@nuxtjs/axios'
+import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api'
+import config from '@/assets/config'
 
-// export const clientApi = ({ $axios }, method, route, params = {}) => {
-//   const newAxiosInstance = this.$axios.create({})
-//   console.log(newAxiosInstance)
-// }
-
-export default ($axios) => ({
-  getProducts() {
-    console.log('List all products')
-  }
+const api = new WooCommerceRestApi({
+  url: config.api.baseURL,
+  consumerKey: config.woocomerce.key,
+  consumerSecret: config.woocomerce.secret,
+  version: 'wc/v3'
 })
+
+export const getProducts = () => {
+  return api.get('products')
+}
+
+export const createOrder = (orderParams) => {
+  return api.post('orders', orderParams)
+}

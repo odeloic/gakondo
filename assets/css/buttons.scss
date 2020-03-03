@@ -28,4 +28,10 @@ a {
     background-color: $color-secondary;
     color: $color-primary--lightest;
   }
+
+  &.disabled {
+    background-color: rgba($color-gray, 0.3);
+    pointer-events: none;
+    color: #ffffff;
+  }
 }

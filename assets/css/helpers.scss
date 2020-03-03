@@ -65,6 +65,7 @@
   align-items: flex-start;
 
   &__elem {
+    width: 100%;
     &:not(:last-child) {
       margin-bottom: 1.6rem;
     }

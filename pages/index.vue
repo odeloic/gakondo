@@ -1,5 +1,12 @@
 <template>
   <div class="home">
+    <div
+      v-if="$store.state.cartUIStatus === 'visible'"
+      :class="{ visible: $store.state.cartUIStatus === 'visible' }"
+      class="cart-container"
+    >
+      <Cart :data="$store.state.cart" />
+    </div>
     <Hero />
     <!-- Hero -->
     <section class="section section--white">
@@ -29,7 +36,7 @@
       </div>
     </section>
     <section class="section section--no-padding section--gray">
-      <ProductsList />
+      <ProductsList :data="$store.state.products" />
     </section>
     <section class="footer section section--green">
       <div class="container">
@@ -82,28 +89,43 @@
 import Hero from '@/components/containers/Hero'
 import ProductsList from '@/components/containers/ProductsList'
 import Shields from '@/components/ui/Shields'
+import Cart from '@/components/containers/Cart'
 // import config from '@/assets/config'
-import clientApi from '@/helpers/clientApi'
+import { getProducts } from '@/helpers/clientApi'
 
 export default {
   components: {
     Hero,
     ProductsList,
-    Shields
+    Shields,
+    Cart
   },
 
-  mounted() {
-    // const myProducts = await this.$axios.get(
-    //   config.api.baseURL + config.api.routes.products
-    // )
-    // console.log(myProducts)
-    const api = clientApi(this.$axios);
-    console.log(api)
+  async fetch({ store }) {
+    const { data } = await getProducts()
+    store.commit('setProducts', data)
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.home {
+  position: relative;
+}
+
+.cart-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 28rem;
+  height: 100%;
+  background-color: $color-gray--light;
+  z-index: 6;
+  visibility: hidden;
+  &.visible {
+    visibility: visible;
+  }
+}
 .footer {
   position: relative;
 

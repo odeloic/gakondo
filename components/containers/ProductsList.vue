@@ -1,60 +1,32 @@
 <template>
   <div class="products">
     <ul class="products-list">
-      <li class="products-list__elm">
-        <div class="product product--active">
+      <li
+        v-for="product in data"
+        :key="product.id"
+        class="products-list__elm"
+        @click="setVisibleProduct(product)"
+      >
+        <div
+          :class="{ 'product--active': activeProduct.id === product.id }"
+          class="product"
+        >
           <div
             class="product__img"
-            style="background-image: url('/cards-deck.png');"
+            :style="`background-image: url('${product.images[0].src}');`"
           ></div>
           <div class="product__meta">
-            <h4 class="product__title">GAKONDO PLaying Cards 1st Edition</h4>
-            <p class="product__description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-            <span class="product__price">$20</span>
-          </div>
-        </div>
-      </li>
-      <li class="products-list__elm">
-        <div class="product">
-          <div
-            class="product__img"
-            style="background-image: url('/cards-deck.png');"
-          ></div>
-          <div class="product__meta">
-            <h4 class="product__title">GAKONDO PLaying Cards 1st Edition</h4>
-            <p class="product__description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-            <span class="product__price">$20</span>
-          </div>
-        </div>
-      </li>
-      <li class="products-list__elm">
-        <div class="product">
-          <div
-            class="product__img"
-            style="background-image: url('/cards-deck.png');"
-          ></div>
-          <div class="product__meta">
-            <h4 class="product__title">GAKONDO PLaying Cards 1st Edition</h4>
-            <p class="product__description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-            <span class="product__price">$20</span>
+            <h4 class="product__title">{{ product.name }}</h4>
+            <p class="product__description" v-html="product.description"></p>
+            <span class="product__price">${{ product.regular_price }}</span>
           </div>
         </div>
       </li>
     </ul>
     <div class="products__active-product">
-      <img src="/cards-deck.png" class="product-img" />
-      <p>
-        Elegant, stylish and designed from scratch, the Gakondo playing cards
-        are the first ever made in Rwanda, they mix the modern digital arts and
-        the traditional cultural elements in a beautiful package.
-      </p>
-      <ul>
+      <img :src="activeProduct.images[0].src" class="product-img" />
+      <p v-html="activeProduct.description"></p>
+      <!-- <ul>
         <li>
           - High end: Our cards are printed from some of the best printing
           companies in the world
@@ -63,14 +35,41 @@
           - Custom Art: Every detail has been carefully designed with passion to
           create an original artwork
         </li>
-      </ul>
-      <button class="btn btn--red">Add to cart</button>
+      </ul> -->
+      <button class="btn btn--red" @click="addProductToCart(activeProduct)">
+        Add to cart
+      </button>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'ProductsList'
+  name: 'ProductsList',
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data() {
+    return {
+      activeProduct: this.data[0]
+    }
+  },
+  // computed: {
+  //   activeProduct() {
+  //     return this.data[0]
+  //   }
+  // },
+  methods: {
+    setVisibleProduct(product) {
+      this.activeProduct = product
+    },
+    addProductToCart(product) {
+      const newProduct = { ...product, quantity: 1 }
+      this.$store.commit('addToCart', newProduct)
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
