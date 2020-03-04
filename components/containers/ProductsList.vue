@@ -17,7 +17,7 @@
           ></div>
           <div class="product__meta">
             <h4 class="product__title">{{ product.name }}</h4>
-            <p class="product__description" v-html="product.description"></p>
+            <!-- <p class="product__description" v-html="product.description"></p> -->
             <span class="product__price">${{ product.regular_price }}</span>
           </div>
         </div>
@@ -25,7 +25,7 @@
     </ul>
     <div class="products__active-product">
       <img :src="activeProduct.images[0].src" class="product-img" />
-      <p v-html="activeProduct.description"></p>
+      <!-- <p v-html="activeProduct.description"></p> -->
       <!-- <ul>
         <li>
           - High end: Our cards are printed from some of the best printing

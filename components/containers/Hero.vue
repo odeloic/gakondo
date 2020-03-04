@@ -36,7 +36,7 @@
         </div>
         <div
           class="intro__img"
-          style="background-image: url('~assets/images/cards-deck.png')"
+          style="background-image: url('/images/cards-deck.png')"
         ></div>
       </div>
     </div>

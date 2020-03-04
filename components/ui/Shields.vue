@@ -13,8 +13,8 @@ export default {
   computed: {
     bgUrl() {
       return this.color === 'dark'
-        ? '/shield-black-horizontal.svg'
-        : '/shield-white-horizontal.svg'
+        ? '/images/shield-black-horizontal.svg'
+        : '/images/shield-white-horizontal.svg'
     }
   }
 }
