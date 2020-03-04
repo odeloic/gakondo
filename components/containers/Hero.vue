@@ -70,7 +70,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url('/wallpaper-art.png');
+    background-image: url('~assets/images/wallpaper-art.png');
     background-size: contain;
   }
   &__footer {
