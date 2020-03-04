@@ -14,7 +14,7 @@
         <div class="flx-container flx-container--horizontal">
           <div
             class="img-cover flx-container__elm--half bg-contain"
-            style="background-image: url('/cards-deck.png');"
+            style="background-image: url('/images/cards-deck.png');"
           ></div>
           <div class="flx-container__elm--half">
             <div class="text-block">

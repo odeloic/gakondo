@@ -3,10 +3,7 @@
     <div class="container">
       <header class="header">
         <div class="logo">
-          <img
-            src="~assets/images/shield-black-vertical.svg"
-            class="logo__img"
-          />
+          <img src="/shield-black-vertical.svg" class="logo__img" />
           <h2 class="logo__title">Gakondo</h2>
         </div>
         <!-- logo -->
@@ -36,7 +33,7 @@
         </div>
         <div
           class="intro__img"
-          style="background-image: url('~assets/images/cards-deck.png')"
+          style="background-image: url('/images/cards-deck.png')"
         ></div>
       </div>
     </div>
