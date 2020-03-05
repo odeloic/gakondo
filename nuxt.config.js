@@ -1,8 +1,11 @@
-const env = require('dotenv').config()
-
 export default {
   mode: 'spa',
-  env: env.parsed,
+  env: {
+    consumerKey:
+      process.env.WC_KEY || 'ck_06f974fd689d2cf0606aadd47f038e873ec85e8b',
+    consumerSecret:
+      process.env.WC_SECRET || 'cs_341c96c87422736523fcc77cebc49e6014bdb54a'
+  },
   /*
    ** Headers of the page
    */

@@ -1,7 +1,7 @@
 export default {
   woocomerce: {
-    key: process.env.WC_KEY,
-    secret: process.env.WC_SECRET
+    key: process.env.consumerKey,
+    secret: process.env.consumerSecret
   },
   api: {
     baseURL: 'https://gakondoplayingcards.com/store',
