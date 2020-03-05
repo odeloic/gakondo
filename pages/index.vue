@@ -104,6 +104,11 @@ export default {
   async fetch({ store }) {
     const { data } = await getProducts()
     store.commit('setProducts', data)
+  },
+
+  mounted() {
+    console.log('CONSUMER KEY: ', process.env.consumerKey)
+    console.log('CONSUMER SECRET: ', process.env.consumerSecret)
   }
 }
 </script>
