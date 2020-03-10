@@ -14,6 +14,10 @@ export const getters = {
     const { cart } = state
     if (!cart.length) return []
     return cart.map(({ id, quantity }) => ({ product_id: id, quantity }))
+  },
+  featuredProduct: (state) => {
+    const { products } = state
+    return products.find((product) => product.tags[0].name === 'Featured')
   }
 }
 

@@ -10,33 +10,15 @@
     <Hero />
     <!-- Hero -->
     <section class="section section--white">
+      <div class="section__title"><h3>Our Products</h3></div>
       <div class="container">
-        <div class="flx-container flx-container--horizontal">
-          <div
-            class="img-cover flx-container__elm--half bg-contain"
-            style="background-image: url('/images/cards-deck.png');"
-          ></div>
-          <div class="flx-container__elm--half">
-            <div class="text-block">
-              <h2 class="text-block__heading">OUR STORY</h2>
-              <p>
-                Gakondo is a Rwandan brand dedicated to establishing a creative
-                and interactive culture to create strong ties between families
-                and society as a whole. At Gakondo we create playing cards and
-                boardgames/table games.
-              </p>
-              <p>
-                Our unique designs are made in Rwanda with an aim to generate a
-                customized experience by using cultural elements of our society
-                to convey a story and educate the players.
-              </p>
-            </div>
-          </div>
+        <div class="featured-product-container">
+          <FeaturedProduct :data="featuredProduct" />
         </div>
       </div>
-    </section>
-    <section class="section section--no-padding section--gray">
-      <ProductsList :data="$store.state.products" />
+      <div class="products-container">
+        <ProductsList :data="$store.state.products" />
+      </div>
     </section>
     <section class="footer section section--green">
       <div class="container">
@@ -86,11 +68,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Hero from '@/components/containers/Hero'
 import ProductsList from '@/components/containers/ProductsList'
 import Shields from '@/components/ui/Shields'
 import Cart from '@/components/containers/Cart'
-// import config from '@/assets/config'
+import FeaturedProduct from '@/components/containers/FeaturedProduct'
 import { getProducts } from '@/helpers/clientApi'
 
 export default {
@@ -98,17 +81,31 @@ export default {
     Hero,
     ProductsList,
     Shields,
-    Cart
+    Cart,
+    FeaturedProduct
   },
-
   async fetch({ store }) {
-    const { data } = await getProducts()
-    store.commit('setProducts', data)
+    // const { data } = await getProducts()
+    await getProducts()
+      .then(({ data }) => store.commit('setProducts', data))
+      .catch((error) => console.log(error))
   },
-
+  computed: {
+    ...mapGetters(['featuredProduct'])
+  },
   mounted() {
     console.log('CONSUMER KEY: ', process.env.consumerKey)
     console.log('CONSUMER SECRET: ', process.env.consumerSecret)
+  },
+  head() {
+    return {
+      script: [
+        {
+          src:
+            'https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/flwpbf-inline.js'
+        }
+      ]
+    }
   }
 }
 </script>
@@ -163,5 +160,9 @@ export default {
   span {
     font-size: 1.3rem;
   }
+}
+
+.featured-product-container {
+  margin-bottom: 5rem;
 }
 </style>

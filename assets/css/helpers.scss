@@ -4,6 +4,7 @@
   align-items: center;
   &--horizontal {
     flex-direction: row;
+    justify-content: space-between;
   }
 
   &--align-start {
@@ -12,7 +13,7 @@
 
   &__elm {
     &--half {
-      flex-basis: 50%;
+      flex-basis: 48%;
     }
 
     &--third {

@@ -14,5 +14,8 @@ export const getProducts = () => {
 }
 
 export const createOrder = (orderParams) => {
-  return api.post('orders', orderParams)
+  api
+    .post('orders', orderParams)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error.response.data))
 }

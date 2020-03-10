@@ -61,7 +61,7 @@ export default {
 <style lang="scss" scoped>
 .hero {
   padding: 5rem 0;
-  background-color: $color-primary--lightest;
+  background-color: $color-black;
   position: relative;
   &::after {
     content: '';

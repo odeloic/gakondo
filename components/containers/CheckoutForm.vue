@@ -41,13 +41,15 @@
       ><input v-model="phone" type="number" name="phone" />
     </div>
     <div class="group">
-      <button class="btn btn--red" @click="submitOrder()">Confirm Order</button>
+      <button class="btn btn--red" @click.prevent="submitOrder()">
+        Confirm Order
+      </button>
     </div>
   </form>
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { createOrder } from '@/helpers/clientApi'
+// import { createOrder } from '@/helpers/clientApi'
 export default {
   name: 'CheckoutForm',
   data() {
@@ -60,31 +62,51 @@ export default {
       state: '',
       postcode: '',
       country: 'US',
-      email: '',
+      email: 'odeloic@gmail.com',
       phone: '+250788516460'
     }
   },
   computed: {
-    ...mapGetters(['cartProducts'])
+    ...mapGetters(['cartProducts', 'cartTotal'])
   },
   methods: {
     submitOrder() {
-      const params = {
-        line_items: this.cartProducts,
-        billing: {
-          first_name: this.firstname,
-          last_name: this.lastname,
-          address_1: this.address1,
-          address_2: this.address2,
-          city: this.city,
-          state: this.state,
-          postcode: this.postcode,
-          country: this.country,
-          email: this.email,
-          phone: this.phone
-        }
-      }
-      createOrder(params)
+      // const params = {
+      //   shipping: {
+      //     first_name: this.firstname,
+      //     last_name: this.lastname,
+      //     address_1: this.address1,
+      //     address_2: this.address2,
+      //     city: this.city,
+      //     state: this.state,
+      //     postcode: this.postcode,
+      //     country: this.country,
+      //     email: this.email,
+      //     phone: this.phone
+      //   },
+      //   line_items: this.cartProducts
+      // }
+      // createOrder(params)
+      window.getpaidSetup({
+        customer_email: this.email,
+        amount: parseFloat(this.cartTotal),
+        txref: '00874aa',
+        PBFPubKey: 'FLWPUBK-5f6a3ea613788ec9af23b0304d25c6f7-X',
+        onclose: () => console.log('payment closed'),
+        callback: (response) => console.log(response),
+        meta: this.metadata,
+        currency: 'USD',
+        country: 'NG',
+        customer_firstname: this.firstname,
+        customer_lastname: this.lastname,
+        custom_title: 'Thanks For shopping with us'
+        // custom_logo: this.customLogo,
+        // redirect_url: this.redirectUrl,
+        // payment_plan: this.paymentPlan,
+        // payment_options: this.paymentOptions,
+        // subaccounts: this.subaccounts,
+        // hosted_payment: this.hostedPayment
+      })
     }
   }
 }

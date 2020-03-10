@@ -4,7 +4,7 @@
       <header class="header">
         <div class="logo">
           <img
-            src="~assets/images/shield-black-vertical.svg"
+            src="~assets/images/shield-vertical-white.svg"
             class="logo__img"
           />
           <h2 class="logo__title">Gakondo</h2>
@@ -32,26 +32,21 @@
             society as a whole.
           </p>
 
-          <button class="btn btn--outline">see our catalog</button>
+          <button class="btn btn--outline btn--outline--white">
+            see our catalog
+          </button>
         </div>
         <div
           class="intro__img"
-          style="background-image: url('/images/cards-deck.png')"
+          style="background-image: url('/images/gakondo-both.png')"
         ></div>
       </div>
-    </div>
-    <div class="hero__footer">
-      <Shields />
     </div>
   </div>
 </template>
 <script>
-import Shields from '../ui/Shields'
 export default {
   name: 'Hero',
-  components: {
-    Shields
-  },
   methods: {
     toggleCart() {
       this.$store.state.cartUIStatus === 'idle'
@@ -64,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .hero {
   padding: 5rem 0;
-  background-color: $color-primary--lightest;
+  background-color: $color-black;
   position: relative;
   &::after {
     content: '';
@@ -103,6 +98,7 @@ export default {
   &__title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2.3rem;
+    color: $color-primary--lightest;
   }
 }
 
@@ -130,7 +126,7 @@ export default {
     p {
       font-size: 1.4rem;
       line-height: 1.8;
-      color: $color-gray;
+      color: $color-primary--lightest;
       margin-bottom: 3rem;
     }
     &__header {

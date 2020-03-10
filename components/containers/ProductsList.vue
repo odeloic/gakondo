@@ -1,12 +1,7 @@
 <template>
   <div class="products">
     <ul class="products-list">
-      <li
-        v-for="product in data"
-        :key="product.id"
-        class="products-list__elm"
-        @click="setVisibleProduct(product)"
-      >
+      <li v-for="product in data" :key="product.id" class="products-list__elm">
         <div
           :class="{ 'product--active': activeProduct.id === product.id }"
           class="product"
@@ -17,32 +12,33 @@
           ></div>
           <div class="product__meta">
             <h4 class="product__title">{{ product.name }}</h4>
-            <!-- <p class="product__description" v-html="product.description"></p> -->
             <span class="product__price">${{ product.regular_price }}</span>
+            <p class="product__description">
+              {{ getText(product.description) }}
+            </p>
+            <button
+              class="btn btn--red"
+              @click.prevent="addProductToCart(product)"
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </li>
     </ul>
-    <div class="products__active-product">
+    <!-- <div class="products__active-product">
       <img :src="activeProduct.images[0].src" class="product-img" />
-      <!-- <p v-html="activeProduct.description"></p> -->
-      <!-- <ul>
-        <li>
-          - High end: Our cards are printed from some of the best printing
-          companies in the world
-        </li>
-        <li>
-          - Custom Art: Every detail has been carefully designed with passion to
-          create an original artwork
-        </li>
-      </ul> -->
+      <p>
+        {{ getText(activeProduct.description) }}
+      </p>
       <button class="btn btn--red" @click="addProductToCart(activeProduct)">
         Add to cart
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
+import { parseHTMLString } from '@/helpers/parseHTMLString'
 export default {
   name: 'ProductsList',
   props: {
@@ -56,11 +52,6 @@ export default {
       activeProduct: this.data[0]
     }
   },
-  // computed: {
-  //   activeProduct() {
-  //     return this.data[0]
-  //   }
-  // },
   methods: {
     setVisibleProduct(product) {
       this.activeProduct = product
@@ -68,6 +59,9 @@ export default {
     addProductToCart(product) {
       const newProduct = { ...product, quantity: 1 }
       this.$store.commit('addToCart', newProduct)
+    },
+    getText(el) {
+      return parseHTMLString(el)
     }
   }
 }
@@ -75,63 +69,31 @@ export default {
 <style lang="scss" scoped>
 .products {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
 }
 
 .products-list {
-  flex-basis: 45%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+  flex-wrap: wrap;
 
   &__elm {
-    width: 100%;
+    flex-basis: calc(100% / 3);
     &:not(:last-child) {
-      border-bottom: 1px solid rgba($color-gray, 0.1);
+      // border-bottom: 1px solid rgba($color-gray, 0.1);
     }
-  }
-}
-
-.products__active-product {
-  flex: 1;
-  padding: 5rem;
-  background-color: $color-gray--light;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .product-img {
-    width: 30rem;
-  }
-  p {
-    text-align: center;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: rgba($color-gray, 0.7);
-    margin-bottom: 1rem;
-  }
-
-  ul li {
-    font-size: 1.2rem;
-    color: rgba($color-gray, 0.7);
-  }
-
-  .btn {
-    margin-top: 2rem;
   }
 }
 
 .product {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
   padding: 4rem 2.8rem;
-  background-color: #ffffff;
 
   &--active {
-    background-color: $color-primary--lightest;
+    // background-color: $color-primary--lightest;
   }
 
   &__img {
@@ -139,14 +101,17 @@ export default {
     height: 10rem;
     width: 15rem;
     background-repeat: no-repeat;
+    margin-right: 2rem;
+    background-position: center;
   }
 
   &__title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: $color-secondary;
-    margin-bottom: 0.1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: $color-primary;
+    margin-bottom: 1rem;
+    letter-spacing: 0.6px;
   }
 
   &__description {
@@ -157,10 +122,12 @@ export default {
   }
 
   &__price {
-    color: $color-primary;
+    color: $color-secondary;
     font-size: 1.8rem;
     font-weight: 700;
     font-family: 'Bebas Neue', sans-serif;
+    display: inline-block;
+    margin-bottom: 1rem;
   }
 }
 </style>
