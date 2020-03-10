@@ -87,11 +87,12 @@ export default {
       //   line_items: this.cartProducts
       // }
       // createOrder(params)
+      const publickKey = 'FLWPUBK-9e1e8a884d1260d84c60931086f7191a-X'
       window.getpaidSetup({
         customer_email: this.email,
         amount: parseFloat(this.cartTotal),
-        txref: '00874aa',
-        PBFPubKey: 'FLWPUBK-1ad9929995b08b6cf9b97ba8ebccb8e7-X',
+        txref: '008744323234aa',
+        PBFPubKey: publickKey,
         onclose: () => console.log('payment closed'),
         callback: (response) => console.log(response),
         meta: this.metadata,
