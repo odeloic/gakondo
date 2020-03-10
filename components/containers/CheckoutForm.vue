@@ -91,7 +91,7 @@ export default {
         customer_email: this.email,
         amount: parseFloat(this.cartTotal),
         txref: '00874aa',
-        PBFPubKey: 'FLWPUBK-5f6a3ea613788ec9af23b0304d25c6f7-X',
+        PBFPubKey: 'FLWPUBK-1ad9929995b08b6cf9b97ba8ebccb8e7-X',
         onclose: () => console.log('payment closed'),
         callback: (response) => console.log(response),
         meta: this.metadata,

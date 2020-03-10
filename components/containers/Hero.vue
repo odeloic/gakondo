@@ -11,7 +11,12 @@
         </div>
         <!-- logo -->
         <nav class="navigation">
-          <a class="navigation__link" href="#" @click="toggleCart()">Shop</a>
+          <a class="navigation__link" href="#" @click="toggleCart()"
+            ><span>View Cart</span
+            ><font-awesome-icon
+              :icon="['fas', 'shopping-cart']"
+              class="icon--small cart-icon"
+          /></a>
         </nav>
         <!-- navigation -->
       </header>
@@ -108,9 +113,17 @@ export default {
 
   &__link {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    color: $color-primary;
+    font-size: 1.8rem;
+    color: $color-primary--lightest;
     font-weight: 700;
+
+    span {
+      margin-right: 1.4rem;
+    }
+  }
+
+  .cart-icon {
+    color: $color-primary--lightest;
   }
 }
 

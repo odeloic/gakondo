@@ -1,6 +1,7 @@
 export const parseHTMLString = (el) => {
   const parser = new DOMParser()
   const docEL = parser.parseFromString(el, 'text/html')
+  console.log(docEL)
   const paragraphs = docEL.getElementsByTagName('p')
   const sentences = []
   for (let p = 0; p < paragraphs.length; p++) {

@@ -2,7 +2,9 @@ export const state = () => ({
   products: [],
   cart: [],
   cartUIStatus: 'idle',
-  cartStep: 'checkout'
+  cartStep: 'checkout',
+  isProductSelected: false,
+  selectedProduct: null
 })
 
 export const getters = {
@@ -34,5 +36,13 @@ export const mutations = {
   },
   updateCartStep(state, step) {
     state.cartStep = step
+  },
+  setSelectedProduct(state, payload) {
+    state.isProductSelected = true
+    state.selectedProduct = payload
+  },
+  deSelectProduct(state) {
+    state.isProductSelected = false
+    state.selectedProduct = null
   }
 }

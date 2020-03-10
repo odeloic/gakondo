@@ -18,7 +18,7 @@
             </p>
             <button
               class="btn btn--red"
-              @click.prevent="addProductToCart(product)"
+              @click.prevent="selectProduct(product)"
             >
               Add to cart
             </button>
@@ -62,6 +62,9 @@ export default {
     },
     getText(el) {
       return parseHTMLString(el)
+    },
+    selectProduct(product) {
+      this.$store.commit('setSelectedProduct', product)
     }
   }
 }

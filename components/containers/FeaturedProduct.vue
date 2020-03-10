@@ -9,9 +9,11 @@
         <h3 class="featured-product__title">{{ data.name }}</h3>
         <span class="featured-product__price">${{ data.regular_price }}</span>
         <p class="featured-product__description">
-          {{ getDescription(data.short_description) }}
+          {{ getDescription(data.description) }}
         </p>
-        <button class="btn btn--red">Add to cart</button>
+        <button class="btn btn--red" @click.prevent="selectProduct(data)">
+          Add to cart
+        </button>
       </div>
     </div>
   </div>
@@ -28,6 +30,9 @@ export default {
   methods: {
     getDescription(el) {
       return parseHTMLString(el)
+    },
+    selectProduct(product) {
+      this.$store.commit('setSelectedProduct', product)
     }
   }
 }

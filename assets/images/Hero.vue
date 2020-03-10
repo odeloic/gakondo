@@ -8,7 +8,9 @@
         </div>
         <!-- logo -->
         <nav class="navigation">
-          <a class="navigation__link" href="#" @click="toggleCart()">Shop</a>
+          <a class="navigation__link" href="#" @click="toggleCart()"
+            ><font-awesome-icon :icon="['fas', 'coffee']"
+          /></a>
         </nav>
         <!-- navigation -->
       </header>

@@ -73,6 +73,18 @@
   }
 }
 
+.horizontal-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &__elem {
+    &:not(:last-child) {
+      margin-right: 1.4rem;
+    }
+  }
+}
+
 .color-white {
   color: $color-primary--lightest;
 }
@@ -80,5 +92,15 @@
 .mg-bottom {
   &--small {
     margin-bottom: 2rem;
+  }
+}
+
+.icon {
+  &--small {
+    font-size: 1.4rem;
+  }
+
+  &--medium {
+    font-size: 1.8rem;
   }
 }
