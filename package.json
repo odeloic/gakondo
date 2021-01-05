@@ -14,7 +14,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "nuxt": "^2.0.0",
     "woocommerce-api": "^1.5.0",
